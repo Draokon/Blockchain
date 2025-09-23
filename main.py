@@ -61,6 +61,14 @@ def add_letters(text):
             result+= fifth_index
     return result
 
+def swap(text):
+    if len(text) % 3 != 0:
+        text += 'x'
+    swapped = ''
+    for i in range(0, len(text), 3):
+        swapped += text[i+2] + text[i+1] + text[i]
+    return swapped
+
 print(fixed_hash('labas'))
 print(fixed_hash(hash(insert('labas'))))
 print(fixed_hash(hash('labas')))
@@ -81,3 +89,4 @@ print(hash(insert('labas')))
 #final/main
 print(fixed_hash(move(substitute(add_letters(insert(hash('labas')))))))
 print(fixed_hash(add_letters(move(insert(substitute(hash('labas')))))))
+print(fixed_hash(swap(move(substitute(add_letters(insert(hash('labas'))))))))
