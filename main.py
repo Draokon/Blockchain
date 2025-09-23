@@ -45,6 +45,22 @@ def fixed_hash(text):
         hash_str = text[:16]
     return hash_str
 
+def move(text):
+    for i in range(0, len(text) -1, 2):
+        text = text[:i] + text[i+1] + text[i] + text[i+2:]
+    return text
+
+def add_letters(text):
+    alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+    result=""
+    for ch in text:
+        result+=ch
+        if ch in alphabet:
+            index = alphabet.index(ch)
+            fifth_index = alphabet[(index + 5) % len(alphabet)]
+            result+= fifth_index
+    return result
+
 print(fixed_hash('labas'))
 print(fixed_hash(hash(insert('labas'))))
 print(fixed_hash(hash('labas')))
@@ -61,3 +77,7 @@ print(hash('LABAS'))
 print(hash('12345'))
 print(insert('labas'))
 print(hash(insert('labas')))
+
+#final/main
+print(fixed_hash(move(substitute(add_letters(insert(hash('labas')))))))
+print(fixed_hash(add_letters(move(insert(substitute(hash('labas')))))))
