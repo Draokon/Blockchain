@@ -66,27 +66,19 @@ def swap(text):
         text += 'x'
     swapped = ''
     for i in range(0, len(text), 3):
-        swapped += text[i+2] + text[i+1] + text[i]
+          segment = text[i:i+3]
+          swapped += segment[::-1]     
+        #swapped += text[i+2] + text[i+1] + text[i]
     return swapped
 
-print(fixed_hash('labas'))
-print(fixed_hash(hash(insert('labas'))))
-print(fixed_hash(hash('labas')))
-print(fixed_hash(insert('Labas')))
-print(substitute(fixed_hash(hash(insert('labas'))))) 
-print(substitute(fixed_hash(hash('labas'))))
-print(substitute(fixed_hash(insert('Labas')))) 
+def read_file(path):
+    with open(path, 'r') as file:
+        return file.read()
 
-print(hash('LabAs'))
-print(hash('Labas'))
-print(hash('labaS'))
-print(hash('labas'))
-print(hash('LABAS'))
-print(hash('12345'))
-print(insert('labas'))
-print(hash(insert('labas')))
+if __name__ == "__main__":
+    files=["vienas_simbolis", "tuscias","daug_simboliu", "daug_bet_1skirtumas"]
+    for fname in files:
+        print(f"File: {fname}")
+        print(f"Final result: {fixed_hash(swap(move(substitute(add_letters(insert(hash(read_file(fname))))))))}\n")
 
-#final/main
-print(fixed_hash(move(substitute(add_letters(insert(hash('labas')))))))
-print(fixed_hash(add_letters(move(insert(substitute(hash('labas')))))))
-print(fixed_hash(swap(move(substitute(add_letters(insert(hash('labas'))))))))
+
